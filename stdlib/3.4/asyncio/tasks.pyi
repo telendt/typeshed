@@ -1,4 +1,4 @@
-from typing import (Any, TypeVar, Set, Dict, List, TextIO, Union, Tuple, Generic, Callable,
+from typing import (Any, Awaitable, TypeVar, Set, Dict, List, TextIO, Union, Tuple, Generic, Callable,
                     Coroutine, Generator, Iterable, Awaitable, overload, Sequence, Iterator,
                     Optional)
 import concurrent.futures
@@ -26,7 +26,7 @@ def run_coroutine_threadsafe(coro: _FutureT[_T],
                              loop: AbstractEventLoop) -> concurrent.futures.Future[_T]: ...
 def shield(arg: _FutureT[_T], *, loop: AbstractEventLoop = ...) -> Future[_T]: ...
 def sleep(delay: float, result: _T = ..., loop: AbstractEventLoop = ...) -> Future[_T]: ...
-def wait(fs: List[Task[_T]], *, loop: AbstractEventLoop = ...,
+def wait(fs: List[Awaitable[_T]], *, loop: AbstractEventLoop = ...,
     timeout: float = ...,
          return_when: str = ...) -> Future[Tuple[Set[Future[_T]], Set[Future[_T]]]]: ...
 def wait_for(fut: _FutureT[_T], timeout: Optional[float],
